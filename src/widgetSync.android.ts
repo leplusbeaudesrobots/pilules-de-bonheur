@@ -7,7 +7,8 @@ export async function refreshWidget(state: AppState): Promise<void> {
   try {
     await requestWidgetUpdate({
       widgetName: WIDGET_NAME,
-      renderWidget: () => React.createElement(PillWidget, widgetPropsFrom(state)),
+      renderWidget: (info) =>
+        React.createElement(PillWidget, widgetPropsFrom(state, { width: info.width, height: info.height })),
     });
   } catch {
     // pas de widget posé : rien à faire
